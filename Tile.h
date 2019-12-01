@@ -13,13 +13,13 @@ public:
 
 	Tile() = default;
 
-	Tile(TileId, std::shared_ptr<sf::Sprite>);
+	Tile(TileId, std::shared_ptr<sf::Texture>);
 
-	void setTile(TileId, std::shared_ptr<sf::Sprite>);
+	void setTile(TileId, std::shared_ptr<sf::Texture>);
 
 	TileId getId();
 
-	std::shared_ptr<sf::Sprite> getSprite();
+	std::shared_ptr<sf::Texturee> getTexture();
 
 	~Tile();
 
@@ -27,7 +27,7 @@ public:
 
 private:
 	TileId id;
-	std::shared_ptr<sf::Sprite> sprite;
+	std::shared_ptr<sf::Texture> texture;
 };
 
 #endif 
