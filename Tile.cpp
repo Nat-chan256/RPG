@@ -1,4 +1,4 @@
-#include "Tile.h"
+#include "Tile.hpp"
 
 Tile::Tile(TileId new_id, std::shared_ptr<sf::Texture> new_t)
 {
@@ -21,5 +21,6 @@ std::shared_ptr<sf::Texture> Tile::getTexture()
 {
 	return texture;
 }
+
 
 
