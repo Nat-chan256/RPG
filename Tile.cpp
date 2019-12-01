@@ -1,21 +1,15 @@
 #include "Tile.h"
 
-Tile::Tile(TileId new_id, std::shared_ptr<sf::Sprite> new_s)
+Tile::Tile(TileId new_id, std::shared_ptr<sf::Texture> new_t)
 {
 	id = new_id;
-	sprite = new_s;
+	texture = new_t;
 }
 
-Tile::~Tile()
-{
-	sprite.reset();
-	id = Empty;
-}
-
-void Tile::setTile(TileId new_id, std::shared_ptr<sf::Sprite> s_ptr)
+void Tile::setTile(TileId new_id, std::shared_ptr<sf::Texture> t_ptr)
 {
 	id = new_id;
-	sprite = s_ptr;
+	texture = t_ptr;
 }
 
 TileId Tile::getId()
@@ -23,9 +17,9 @@ TileId Tile::getId()
 	return id;
 }
 
-std::shared_ptr<sf::Sprite> Tile::getSprite()
+std::shared_ptr<sf::Texture> Tile::getTexture()
 {
-	return sprite;
+	return texture;
 }
 
 
