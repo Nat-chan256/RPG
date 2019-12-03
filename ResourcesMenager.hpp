@@ -26,7 +26,7 @@ public:
 
 	std::shared_ptr<T> give(ResourceId id) const
 	{
-		return m_data.at(id)->second;
+		return m_data.at(id);
 	}
 
 	size_t add(std::shared_ptr<T> resource)

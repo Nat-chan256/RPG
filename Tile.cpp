@@ -21,6 +21,3 @@ std::shared_ptr<sf::Texture> Tile::getTexture()
 {
 	return texture;
 }
-
-
-
