@@ -19,9 +19,9 @@ public:
 
 	TileId getId();
 
-	std::shared_ptr<sf::Texturee> getTexture();
+	std::shared_ptr<sf::Texture> getTexture();
 
-	~Tile();
+	~Tile() = default;
 
 	static const TileId Empty = 0;
 
@@ -30,4 +30,4 @@ private:
 	std::shared_ptr<sf::Texture> texture;
 };
 
-#endif 
+#endif
