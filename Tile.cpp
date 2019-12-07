@@ -12,12 +12,12 @@ void Tile::setTile(TileId new_id, std::shared_ptr<sf::Texture> t_ptr)
 	texture = t_ptr;
 }
 
-TileId Tile::getId()
+TileId Tile::getId() const
 {
 	return id;
 }
 
-std::shared_ptr<sf::Texture> Tile::getTexture()
+std::shared_ptr<sf::Texture> Tile::getTexture() const
 {
 	return texture;
 }
