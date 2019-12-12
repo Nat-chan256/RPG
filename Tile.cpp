@@ -1,23 +1,11 @@
 #include "Tile.hpp"
 
-Tile::Tile(TileId new_id, std::shared_ptr<sf::Texture> new_t)
+TileId Tile::getId() const noexcept
 {
-	id = new_id;
-	texture = new_t;
+	return m_id;
 }
 
-void Tile::setTile(TileId new_id, std::shared_ptr<sf::Texture> t_ptr)
+std::weak_ptr<sf::Texture> Tile::getTexture() const noexcept
 {
-	id = new_id;
-	texture = t_ptr;
-}
-
-TileId Tile::getId() const
-{
-	return id;
-}
-
-std::shared_ptr<sf::Texture> Tile::getTexture() const
-{
-	return texture;
+	return m_texture;
 }

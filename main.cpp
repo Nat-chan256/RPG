@@ -1,4 +1,7 @@
 #include <iostream>
+
+#include <SFML/Graphics.hpp>
+
 #include "Layer.hpp"
 
 /*
@@ -31,10 +34,14 @@ int main(int argc, char const *argv[])
 				window.close();
 		}
 
-		auto menager = std::make_shared<TexturesMenager>();;
-		menager->add(t1);
-		menager->add(t2);
-		layer.bindTextures(menager);
+		auto texturesMenager = std::make_shared<TexturesMenager>();
+		texturesMenager->add(t1);
+		texturesMenager->add(t2);
+
+		auto tilesMenager = std::make_shared<TilesMenager>();
+		tilesMenager->add(std::make_shared<Tile>(1, texturesMenager->give(1)));
+		tilesMenager->add(std::make_shared<Tile>(2, texturesMenager->give(2)));
+		layer.bindTiles(tilesMenager);
 
 		window.clear(sf::Color::White);
 		window.draw(layer);

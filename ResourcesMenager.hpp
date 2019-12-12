@@ -7,29 +7,29 @@
 
 using ResourceId = uint16_t;
 
-template <typename T>
+template <typename T, typename I = ResourceId>
 class ResourcesMenager
 {
 public:
 	ResourcesMenager() = default;
 	~ResourcesMenager() = default;
 
-	const T& operator [] (ResourceId id) const
+	const T& operator [] (ResourceId id_) const
 	{
-		return get(id);
+		return get(id_);
 	}
 
-	const T& get(ResourceId id) const
+	const T& get(ResourceId id_) const
 	{
-		return *m_data.at(id);
+		return *m_data.at(id_);
 	}
 
-	std::shared_ptr<T> give(ResourceId id) const
+	std::shared_ptr<T> give(ResourceId id_) const
 	{
-		return m_data.at(id);
+		return m_data.at(id_);
 	}
 
-	size_t add(std::shared_ptr<T> resource)
+	size_t add(std::shared_ptr<T> resource_)
 	{
 		ResourceId newId = -1;
 
@@ -39,14 +39,14 @@ public:
 		else
 			newId = m_data.rbegin()->first + 1;
 
-		m_data[newId] = resource;
+		m_data[newId] = resource_;
 		return newId;
 	}
 
-	void changeResource(const T& resource, ResourceId id)
+	void changeResource(const T& resource_, ResourceId id)
 	{
 		auto resourceInData = m_data.at(id);
-		*resourceInData = resource;
+		*resourceInData = resource_;
 	}
 
 private:
@@ -54,3 +54,4 @@ private:
 };
 
 using TexturesMenager = ResourcesMenager<sf::Texture>;
+using TilesMenager = ResourcesMenager<Tile, TileId>;

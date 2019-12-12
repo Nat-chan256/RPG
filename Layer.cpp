@@ -11,33 +11,33 @@ Layer::Layer()
 	};
 }
 
-TileId Layer::getTile(sf::Vector2i position) const
+TileId Layer::getTile(sf::Vector2i position_) const noexcept
 {
-	return getTile(position.x, position.y);
+	return getTile(position_.x, position_.y);
 }
 
-TileId Layer::getTile(size_t x, size_t y) const
+TileId Layer::getTile(size_t x_, size_t y_) const noexcept
 {
 	// Использую at для того, чтобы генерировались исключения
-	return m_matrix.at(y).at(x);
+	return m_matrix.at(y_).at(x_);
 }
 
-void Layer::setTile(sf::Vector2i position, TileId newTile)
+void Layer::setTile(sf::Vector2i position_, TileId newTile_)
 {
-	setTile(position.x, position.y, newTile);
+	setTile(position_.x, position_.y, newTile_);
 }
 
-void Layer::setTile(size_t x, size_t y, TileId newTile)
+void Layer::setTile(size_t x_, size_t y_, TileId newTile_)
 {
-	m_matrix.at(y).at(x) = newTile;
+	m_matrix.at(y_).at(x_) = newTile_;
 }
 
-void Layer::bindTextures(std::shared_ptr<TexturesMenager> menager)
+void Layer::bindTiles(std::shared_ptr<TilesMenager> menager_) noexcept
 {
-	m_textures = menager;
+	m_tilesMenager = menager_;
 }
 
-void Layer::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void Layer::draw(sf::RenderTarget& target_, sf::RenderStates states_) const
 {
 	sf::Sprite sprite;
 	sf::Vector2f position;
@@ -48,9 +48,12 @@ void Layer::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		{
 			if (j != Tile::Empty)
 			{
-				sprite.setTexture(m_textures->get(j));
+				const Tile& tile = m_tilesMenager->get(j);
+				const auto texturePtr = tile.getTexture().lock();
+
+				sprite.setTexture(*texturePtr);
 				sprite.setPosition(position);
-				target.draw(sprite);
+				target_.draw(sprite);
 			}
 
 			position.x += 32;

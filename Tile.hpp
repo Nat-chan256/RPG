@@ -1,30 +1,27 @@
-#progma once
+#pragma once
 
 #include <inttypes.h>
 #include <memory>
-#include <SFML/Graphics.hpp>
+
+#include <SFML/Graphics/Texture.hpp>
 
 using TileId = uint16_t;
 
 class Tile
 {
 public:
+	Tile(TileId id_, std::weak_ptr<sf::Texture> texture_) :
+		m_id(id_),
+		m_texture(texture_) {}
 
-	Tile() = default;
-	~Tile();
+	~Tile() = default;
 
-	Tile(TileId, std::shared_ptr<sf::Texture>);
-
-	void setTile(TileId, std::shared_ptr<sf::Texture>);
-
-	TileId getId() const;
-
-	std::shared_ptr<sf::Texturee> getTexture() const;
+	TileId getId() const noexcept;
+	std::weak_ptr<sf::Texture> getTexture() const noexcept;
 
 	static const TileId Empty = 0;
 
 private:
-	TileId id;
-	std::shared_ptr<sf::Texture> texture;
+	TileId m_id;
+	std::weak_ptr<sf::Texture> m_texture;
 };
-
