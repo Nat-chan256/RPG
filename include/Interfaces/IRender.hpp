@@ -6,11 +6,11 @@ namespace interfaces
 
 class IRender
 {
-private:
-	/* data */
 public:
 	IRender(/* args */);
 	~IRender();
+
+protected:
 };
 
 } // namespace interfaces

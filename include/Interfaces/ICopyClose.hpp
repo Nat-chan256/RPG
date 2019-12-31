@@ -16,11 +16,11 @@ class ICopyClose
 {
 public:
 	ICopyClose() = default;
-	~ICopyClose() = default;
+	virtual ~ICopyClose() = 0;
 
 private:
-	ICopyClose(const ICopyClose& iCopyClose) = delete;
-	ICopyClose& operator =(const ICopyClose& iCopyClose) = delete;
+	ICopyClose(const ICopyClose& _iCopyClose) = delete;
+	ICopyClose& operator =(const ICopyClose& _iCopyClose) = delete;
 };
 
 } // namespace Interfaces
